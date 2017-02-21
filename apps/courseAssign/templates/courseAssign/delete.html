@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        {% load staticfiles %}
+        <link rel="stylesheet" href="{% static 'courseAssign/css/normalize.css'%}"media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="{% static 'courseAssign/css/skeleton.css'%}"media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="{% static 'courseAssign/css/stylesheet.css'%}"media="screen" title="no title" charset="utf-8">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Are You sure you want to delete the following course?</h1>
+
+                <h2> Course Name: {{course.course_name}}  </h2>
+                <h2>Description: {{course.description}}</h2>
+
+            <form class="row" action="/remove/{{course.id}}" method="POST">
+                     {% csrf_token %}
+                <input type="submit" name="submit" value="YES">
+                <input type="submit" name="submit" value="NO">
+            </form>
+        </div>
+    </body>
+</html>

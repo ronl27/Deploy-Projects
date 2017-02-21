@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>COURSES</title>
+            {% load staticfiles %}
+            <link rel="stylesheet" href="{% static 'courseAssign/css/normalize.css'%}"media="screen" title="no title" charset="utf-8">
+            <link rel="stylesheet" href="{% static 'courseAssign/css/skeleton.css'%}"media="screen" title="no title" charset="utf-8">
+            <link rel="stylesheet" href="{% static 'courseAssign/css/stylesheet.css'%}"media="screen" title="no title" charset="utf-8">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Add New Courses</h1>
+            <form class="" action="/process" method="post">
+                {% csrf_token %}
+                <label><h3>Name:</h3><input type="text" name="name" value=""></label>
+                <label> <h3>Description:</h3> <textarea name="description" rows="8" cols="80"></textarea></label>
+                <input type="submit" name="submit" value="Add">
+            </form>
+            <h2>Courses</h2>
+            <table>
+                <thead>
+                    <th>Course Name</th>
+                    <th>Description</th>
+                    <th>Date Added</th>
+                    <th>Actions</th>
+                </thead>
+                <tbody>
+                    <tr>
+                    {% for course in courses %}
+                    <td><h4>{{course.course_name}}</h4>
+                    </td>
+                    <td>
+                        <h4>{{course.description}}</h4>
+                    </td>
+
+                    <td>
+                        <h4>{{course.created_at}}</h4>
+                    </td>
+                    <td>
+                        <a href="/remove/{{course.id}}"><button class='button danger' type="button" name="button" value="Remove">Remove</button></a>
+                    </td>
+                    </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
